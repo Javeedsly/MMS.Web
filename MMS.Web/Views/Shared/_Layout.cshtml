@@ -4,57 +4,40 @@
 @inject UserManager<AppUser> UserManager
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - MMS</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="~/assets/css/fontawesome.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/assets/css/animated.css">
     <link rel="stylesheet" href="~/assets/css/owl.css">
-    <link rel="stylesheet" href="~/assets/css/graduation.css">
 </head>
 
 <body>
     <div id="js-preloader" class="js-preloader">
         <div class="preloader-inner">
             <span class="dot"></span>
-            <div class="dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="dots"><span></span><span></span><span></span></div>
         </div>
     </div>
+
     <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav class="main-nav">
                         <a asp-controller="Home" asp-action="Index" class="logo">
-                            <img src="~/assets/images/logo.png" alt="MMS Logo">
+                            <img src="~/assets/images/logo.png" alt="MMS Logo" style="max-height: 50px;">
                         </a>
 
                         <ul class="nav">
-                            <div class="nav-right">
-                                <select id="languageSwitcher">
-                                    <option value="az">AZ</option>
-                                    <option value="ru">RU</option>
-                                    <option value="en">EN</option>
-                                </select>
-                            </div>
-
-                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Index" class="active">Əsas</a></li>
-                            <li class="scroll-to-section"><a href="/Home/Index#services">Sistem & Xidmət</a></li>
-                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Graduates">Məzun</a></li>
-                            <li class="scroll-to-section"><a asp-controller="Account" asp-action="Register">Qeydiyyat</a></li>
-                            <li class="scroll-to-section"><a href="#newsletter">Haqqımızda</a></li>
+                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Index" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Ana Səhifə</a></li>
+                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Graduates" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Graduates" ? "active" : "")">Məzunlar</a></li>
 
                             @if (SignInManager.IsSignedIn(User))
                             {
@@ -63,13 +46,13 @@
                                     <a href="javascript:;">
                                         @if (user != null && !string.IsNullOrEmpty(user.ProfileImageUrl))
                                         {
-                                            <img src="~/uploads/@user.ProfileImageUrl" style="width:30px; height:30px; border-radius:50%; margin-right:5px; vertical-align:middle; object-fit: cover;" />
+                                            <img src="~/uploads/@user.ProfileImageUrl" style="width:30px; height:30px; border-radius:50%; margin-right:5px; object-fit:cover;" />
                                         }
                                         else
                                         {
                                             <i class="fa fa-user" style="margin-right:5px;"></i>
                                         }
-                                        @(user?.FirstName ?? "Profil")
+                                        @(user?.FirstName ?? "Hesabım")
                                     </a>
                                     <ul>
                                         <li><a asp-controller="Account" asp-action="Profile">Profilim</a></li>
@@ -80,8 +63,8 @@
                             else
                             {
                                 <li>
-                                    <div class="gradient-button" id="user-login-area">
-                                        <a asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in-alt"></i> Həsabı aç</a>
+                                    <div class="gradient-button">
+                                        <a asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in-alt"></i> Hesab Aç</a>
                                     </div>
                                 </li>
                             }
@@ -92,66 +75,16 @@
             </div>
         </div>
     </header>
-    @RenderBody()
 
-    <footer id="newsletter">
+    <div style="min-height: 600px; padding-top: 100px;">
+        @RenderBody()
+    </div>
+
+    <footer>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="section-heading">
-                        <h4>MMS - hər zaman dəstək göstərməyə hazırdır!</h4>
-                    </div>
-                </div>
-                <div class="col-lg-6 offset-lg-3">
-                    <form id="search" action="#" method="POST">
-                        <div class="row">
-                            <div class="col-lg-6 col-sm-6">
-                                <fieldset>
-                                    <input type="text" id="question" placeholder="Sualınızı yazın" required />
-                                </fieldset>
-                            </div>
-                            <div class="col-lg-6 col-sm-6">
-                                <fieldset>
-                                    <button type="submit" class="main-button">Göndər <i class="fa fa-angle-right"></i></button>
-                                </fieldset>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="footer-widget">
-                        <h4>Bizimlə Əlaqə</h4>
-                        <p>Tel: (+994 12) 538-33-83</p>
-                        <p>Qaynar xətt: (+994 12) 539-13-05</p>
-                        <p>E-poçt: aztu@aztu.edu.az</p>
-                        <p>H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073</p>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="footer-widget">
-                        <h4>Kateqoriya</h4>
-                        <ul>
-                            <li><a asp-controller="Home" asp-action="Index">Əsas</a></li>
-                            <li><a href="#services">Sistem & Xidmət</a></li>
-                            <li><a asp-controller="Home" asp-action="Graduates">Məzun</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="footer-widget">
-                        <h4>Biz kimik?</h4>
-                        <div class="logo">
-                            <img src="~/assets/images/white-logo.png" alt="">
-                        </div>
-                        <p>Məzun Məlumat Sistemi – məzunlarımız haqqında ətraflı məlumatların idarə olunduğu rəsmi platformadır.</p>
-                    </div>
-                </div>
                 <div class="col-lg-12">
-                    <div class="copyright-text">
-                        <p>Copyright © 2025 MMS <br> Design: M Safarova</p>
-                    </div>
+                    <p>Copyright © 2025 MMS Co., Ltd. Bütün hüquqlar qorunur.</p>
                 </div>
             </div>
         </div>
@@ -162,13 +95,7 @@
     <script src="~/assets/js/owl-carousel.js"></script>
     <script src="~/assets/js/animation.js"></script>
     <script src="~/assets/js/imagesloaded.js"></script>
-    <script src="~/assets/js/popup.js"></script>
     <script src="~/assets/js/custom.js"></script>
-    <script src="~/assets/js/script.js"></script>
-    <script src="~/assets/js/lang.js"></script>
-    <script src="~/assets/js/user.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

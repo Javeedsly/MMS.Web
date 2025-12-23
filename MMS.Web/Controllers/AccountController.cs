@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using MMS.Core.Entities; // AppUser burdadır
+using MMS.Core.Entities;
 using MMS.Web.ViewModels;
 
 namespace MMS.Web.Controllers
@@ -9,7 +9,7 @@ namespace MMS.Web.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IWebHostEnvironment _env; // Şəkil yükləmək üçün lazımdır
+        private readonly IWebHostEnvironment _env;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment env)
         {
@@ -18,9 +18,12 @@ namespace MMS.Web.Controllers
             _env = env;
         }
 
-        // QEYDİYYAT
-        [HttpGet]
-        public IActionResult Register() => View();
+        // --- QEYDİYYAT ---
+        public IActionResult Register()
+        {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -44,14 +47,18 @@ namespace MMS.Web.Controllers
             }
 
             foreach (var error in result.Errors)
+            {
                 ModelState.AddModelError("", error.Description);
-
+            }
             return View(model);
         }
 
-        // GİRİŞ (LOGIN)
-        [HttpGet]
-        public IActionResult Login() => View();
+        // --- GİRİŞ ---
+        public IActionResult Login()
+        {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -61,20 +68,22 @@ namespace MMS.Web.Controllers
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
 
             if (result.Succeeded)
+            {
                 return RedirectToAction("Index", "Home");
+            }
 
             ModelState.AddModelError("", "Email və ya şifrə yanlışdır.");
             return View(model);
         }
 
-        // ÇIXIŞ (LOGOUT)
+        // --- ÇIXIŞ ---
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
-        // PROFİL GÖSTƏR
+        // --- PROFİL ---
         public async Task<IActionResult> Profile()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -95,14 +104,12 @@ namespace MMS.Web.Controllers
             return View(model);
         }
 
-        // PROFİL YENİLƏ (ŞƏKİL İLƏ)
         [HttpPost]
         public async Task<IActionResult> Profile(ProfileViewModel model)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null) return RedirectToAction("Login");
 
-            // Məlumatları yeniləyirik
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             user.About = model.About;
@@ -111,31 +118,27 @@ namespace MMS.Web.Controllers
             user.GraduationYear = model.GraduationYear;
             user.Profession = model.Profession;
 
-            // Şəkil yükləmə məntiqi
             if (model.Photo != null)
             {
-                string uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
-                // Qovluq yoxdursa yarat
-                if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+                string folder = Path.Combine(_env.WebRootPath, "uploads");
+                if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                string fileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                string path = Path.Combine(folder, fileName);
 
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                using (var stream = new FileStream(path, FileMode.Create))
                 {
-                    await model.Photo.CopyToAsync(fileStream);
+                    await model.Photo.CopyToAsync(stream);
                 }
-
-                user.ProfileImageUrl = uniqueFileName;
+                user.ProfileImageUrl = fileName;
             }
 
-            var result = await _userManager.UpdateAsync(user);
-            if (!result.Succeeded) ModelState.AddModelError("", "Yenilənmə zamanı xəta baş verdi.");
+            await _userManager.UpdateAsync(user);
 
-            // Modeli yeniləyirik ki, view-da düzgün görünsün
+            // View-u yenilə
             model.CurrentImage = user.ProfileImageUrl;
-
-            return View(model); // Eyni səhifədə qalırıq ki, dəyişikliyi görsün
+            ViewBag.Message = "Profil yeniləndi!";
+            return View(model);
         }
     }
 }
