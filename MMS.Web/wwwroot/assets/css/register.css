@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+/* Ümumi tərz */
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Bədən üslubu */
+body {
+  min-height: 100vh;
+  padding: 1.5rem;
+  background-color: #64a3ea;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Qeydiyyat və iş konteyneri arasında 0.5rem boşluq */
+}
+
+/* Ağ konteyner ümumi stil */
+.container,
+.job-container {
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+
+/* Başlıq */
+.title {
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.title::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  height: 3px;
+  width: 80%;
+  max-width: 650px;
+  background: linear-gradient(135deg, #5bd5fb, #37bbf7, #5080ee, #448ce4);
+  border-radius: 2px;
+}
+
+/* 3 sütunlu düzülüş */
+.columns-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-box input,
+.input-box select {
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-box select,
+.input-box input {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input-box input:focus,
+.input-box input:valid {
+  border-color: #5080ee;
+}
+
+/* Gender bölməsi */
+.gender-details {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.gender-title {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.category {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.gender-option {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 16px;
+  cursor: pointer;
+  padding-left: 30px;
+}
+
+.gender-option input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+}
+
+.custom-radio {
+  height: 18px;
+  width: 18px;
+  border: 2px solid #5080ee;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.gender-option input[type="radio"]:checked + .custom-radio::after {
+  content: "";
+  height: 10px;
+  width: 10px;
+  background-color: #5080ee;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+/* Submit düyməsi */
+.buton {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.buton input[type="submit"] {
+  background: linear-gradient(135deg, #5bd5fb, #5080ee);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(80, 128, 238, 0.3);
+}
+
+.buton input[type="submit"]:hover {
+  background: linear-gradient(135deg, #37bbf7, #b944e4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(185, 68, 228, 0.4);
+}
+
+/* "+ iş yeri əlavə et" düyməsi */
+.job-container button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #5bd5fb, #5080ee);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(80, 128, 238, 0.3);
+}
+
+.job-container button:hover {
+  background: linear-gradient(135deg, #37bbf7, #b944e4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(185, 68, 228, 0.4);
+}
+
+#jobFieldsContainer .job-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.job-row .input-box {
+  flex: 1; /* Bütün input sahələri bərabər genişlikdə */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsiv dizayn */
+@media (max-width: 992px) {
+  .columns-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .columns-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .title::before {
+    width: 90%;
+  }
+}
+
+.columns-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/*Register navbar*/
+/* Header və Navigation stil tərtibatları */
+
+/* Header sahəsi */
+.header-area {
+  background-color: #333; /* Əsas fon rəngi */
+  padding: 20px 0; /* Yuxarı və aşağı boşluq */
+  position: relative;
+  z-index: 1000;
+}
+
+.header-sticky {
+  position: fixed; /* Sticky header üçün */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* kölgə effekti */
+}
+
+/* Logo */
+.header-area .logo img {
+  max-width: 150px; /* Logo ölçüsünü tənzimləyir */
+  height: auto;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-nav .nav {
+  list-style: none;
+  display: flex;
+  gap: 30px; /* Menü itemləri arasındakı məsafə */
+}
+
+.main-nav .nav li {
+  padding: 5px 0;
+}
+
+.main-nav .nav li a {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase; /* Böyük hərflərlə */
+  text-decoration: none;
+  transition: color 0.3s ease-in-out; /* Hover effekti */
+}
+
+.main-nav .nav li a:hover {
+  color: #007bff; /* Hover effekti */
+}
+
+.main-nav .nav li a.active {
+  color: #007bff; /* Aktiv olan linkin rəngi */
+}
+
+/* Gradient düymə */
+.gradient-button a {
+  background: linear-gradient(135deg, #4a90e2, #007bff);
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 14px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease-in-out;
+}
+
+.gradient-button a:hover {
+  background: linear-gradient(135deg, #0056b3, #004080);
+}
+
+/* Menu Trigger (mobil versiya üçün) */
+.menu-trigger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-trigger {
+    display: block;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .main-nav .nav {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    background: #333;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    padding: 20px;
+  }
+
+  .main-nav .nav li {
+    padding: 10px 0;
+  }
+
+  .main-nav .nav li a {
+    font-size: 18px;
+  }
+
+  .menu-trigger.active + .nav {
+    display: flex;
+  }
+}
+
+/* Smooth transition for sticky header */
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header-sticky {
+  animation: slideInDown 0.75s ease-in-out;
+}
+
+/* Sidebar Menu */
+.sidebar .nav {
+  list-style: none;
+  padding: 0;
+  width: 100px;
+  margin: 0;
+}
+
+.sidebar .nav li {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav li a {
+  color: #fff; /* Mətni ağ rəngdə göstərir */
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 12px 20px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  background: linear-gradient(135deg, #5bd5fb, #37bbf7, #5080ee, #448ce4); /* Gradient fon */
+}
+
+/* Sidebar'daki keçid hover effekti */
+.sidebar .nav li a:hover {
+  background: linear-gradient(135deg, #37bbf7, #b944e4); /* Hover zamanı gradientin dəyişməsi */
+  transform: translateX(5px); /* Keçid hover zamanı bir az sağa hərəkət edir */
+  box-shadow: 0 4px 8px rgba(80, 128, 238, 0.3); /* Keçidin altına kölgə əlavə olunur */
+}
+
+/* Aktiv keçid üslubu */
+.sidebar .nav li a.active {
+  background: linear-gradient(135deg, #5080ee, #448ce4); /* Aktiv keçidin fonu */
+  box-shadow: 0 6px 14px rgba(80, 128, 238, 0.4);
+}
+
+/* "+ Təhsil əlavə et" düyməsinin dizaynı */
+#addEducationBtn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #5bd5fb, #5080ee); /* Gradient fon */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+/* Təhsil başlığı üçün stil */
+.education-title {
+  font-size: 24px;        /* Yazının ölçüsünü artırır */
+  font-weight: bold;      /* Yazını qalın edir */
+  text-align: center;     /* Yazını ortada mərkəzləşdirir */
+  margin-bottom: 20px;    /* Yuxarıdan və altdan boşluq verir */
+  margin-top: 30px;
+  color: #333;            /* Yazının rəngi */
+}
+
+/* Hover effekti */
+#addEducationBtn:hover {
+  background: linear-gradient(135deg, #37bbf7, #b944e4); /* Hover effekti ilə fon dəyişir */
+  transform: translateY(-2px); /* Hover zamanı yuxarı doğru hərəkət */
+}
+
+/* Focus effekti */
+#addEducationBtn:focus {
+  outline: none; /* Fokus vəziyyətində xətlərin görünməməsi */
+  box-shadow: 0 0 5px 2px rgba(80, 128, 238, 0.5); /* Fokus zamanı yüngül mavi kölgə */
+}
+
+/* Aktiv düymə üslubu */
+#addEducationBtn:active {
+  background: linear-gradient(135deg, #37bbf7, #5bd5fb);
+  transform: translateY(0); /* Aktiv vəziyyətdə heç bir hərəkət */
+  box-shadow: 0 2px 6px rgba(80, 128, 238, 0.3);
+}
+
+/* Copyright bölməsi */
+.copyright-text {
+  text-align: center; /* Mətni mərkəzə düzür */
+  color: #fff; /* Mətnin ağ rəngdə olması */
+  font-size: 14px; /* Yazı ölçüsünü müəyyən edir */
+  margin-top: 30px; /* Üstdən müəyyən məsafə */
+}
+
+.copyright-text p {
+  margin: 0; /* Paraqrafın yuxarı və aşağı boşluğunu sıfırlayır */
+}
+
+.copyright-text a {
+  color: #fff; /* Bağlantının ağ rəngdə olması */
+  text-decoration: none; /* Bağlantı altını çizdirməmək */
+  font-weight: 600; /* Bağlantıya qalın yazı tərzi */
+}
+
+.copyright-text a:hover {
+  color: #0b0b0b; /* Hover effekti ilə mavi rəng */
+  text-decoration: underline; /* Hoverda altını çəkmək */
+}
+
+/* Responsivlik (mobil cihazlar üçün) */
+@media (max-width: 768px) {
+  .copyright-text {
+    font-size: 12px; /* Mobil versiyada daha kiçik yazı ölçüsü */
+  }
+}
+
+/* Mobil versiya üçün responsiv dizayn */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px; /* Mobil ekranlarda sidebarın genişliyi azaldılır */
+  }
+  
+  .sidebar .nav li a {
+    font-size: 14px; /* Mobil versiya üçün font ölçüsü */
+    padding: 10px 15px; /* Mobil versiya üçün padding dəyəri */
+  }
+}

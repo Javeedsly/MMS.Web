@@ -1,0 +1,236 @@
+{
+  "pageTitle": "MMS - Məzun Məlumat Sistemi",
+  "mainHeader": "MMS - Məzun Məlumat Sistemi",
+  "mainSubHeader": "Keçmişin izini, gələcəyin yolunu burada tapın!",
+  "menuHome": "Əsas",
+  "menuServices": "Sistem & Xidmət",
+  "menuGraduate": "Məzun",
+  "menuRegister": "Qeydiyyat",
+  "menuAbout": "Haqqımızda",
+  "menuLogin": "Həsabı aç",
+  "aboutHeader": "Azərbaycan Texniki Universiteti",
+  "aboutText": "Azərbaycan Texniki Universiteti haqqında ümumi məlumat burada olacaq.",
+  "aboutLink": "Azərbaycan Texniki Universitetinin rəsmi səhifəsi",
+  "servicesHeader": "Sistem & Xidmətimiz",
+  "service1Title": "Məzun Qeydiyyatı",
+  "service1Text": "Məzunlarımız sistemdə öz məlumatlarını rahatlıqla qeyd edib gələcək üçün arxivləşdirə bilərlər.",
+  "service2Title": "Sürətli Məlumat Girişi",
+  "service2Text": "Formu doldurmaq cəmi bir neçə dəqiqə çəkir – rahat interfeys və istifadəçi dostu dizayn.",
+  "service3Title": "Qruplaşdırılma",
+  "service3Text": "Məzunlar fakültəyə, ixtisasa və bitirmə ilinə görə sistemdə qruplaşdırılır.",
+  "service4Title": "24/7 Əlaqə və Dəstək",
+  "service4Text": "Suallarınız yaranarsa, əlaqə bölməsi vasitəsilə bizimlə asanlıqla əlaqə saxlaya bilərsiniz.",
+  "registerButton": "Qeydiyyatdan keç",
+  "footerSupport": "MMS - hər zaman dəstək göstərməyə hazırdır!",
+  "footerContactTitle": "Bizimlə Əlaqə",
+  "footerTel": "Tel: (+994 12) 538-33-83",
+  "footerHotline": "Qaynar xətt: (+994 12) 539-13-05",
+  "footerEmail": "E-poçt: aztu@aztu.edu.az",
+  "footerAddress": "H.Cavid prospekti 25, Bakı, Azərbaycan AZ 1073",
+  "footerCategory": "Kateqoriya",
+  "footerWho": "Biz kimik?",
+  "footerWhoText": "Məzun Məlumat Sistemi – məzunlarımız haqqında ətraflı məlumatların idarə olunduğu və arxivləşdirildiyi rəsmi platformadır",
+  "footerCopyright": "Copyright © 2025 MMS",
+  "footerDesign": "Design: M Safarova",
+  "formPlaceholder": "Sualınızı yazın",
+  "formSubmit": "Göndər",
+
+  "welcome": "Xoş gəlmisiniz!",
+  "input_Email_password": "E-mail və parolunuzu daxil edin",
+  "password": "Parol",
+  "loginButton": "Daxil ol",
+  "google": "Google hasabı ilə davam elə",
+  "noAccount": "Həsabınız yoxdu?",
+  "registerLink": "Həsabı aç",
+
+
+
+
+  "pageRegister": "Qeydiyyat Forması",
+
+  "navHome": "Geri",
+  "personalInfoTitle": "Şəxsi Məlumatlar",
+  "labelName": "Adı",
+  "labelSurname": "Soyadı",
+  "labelFatherName": "Atasının adı",
+  "labelDOB": "Doğum tarixi",
+  "placeholderDOB": "DD/MM/YYYY",
+  "labelFIN": "FİN kod",
+  "labelCitizenship": "Məzunun vətəndaşlığı",
+  "optionSelect": "Seçin",
+  "citizenshipAZ": "Azərbaycan",
+  "citizenshipRU": "Rusiya",
+  "citizenshipTR": "Türkiyə",
+  "citizenshipUS": "Amerika Birləşmiş Ştatları",
+  "citizenshipOther": "Digər",
+  "genderTitle": "Gender:",
+  "genderMale": "Kişi",
+  "genderFemale": "Qadın",
+
+  "educationInfoTitle": "Təhsil Məlumatları",
+  "educationSectionTitle": "1-ci Təhsil",
+  "labelUniversity": "Təhsil müəssisəsi",
+ 
+
+  "universityOptions.aztu": "Azərbaycan Texniki Universiteti",
+  "universityOptions.bdu": "Bakı Dövlət Universiteti",
+  "universityOptions.adu1": "Azərbaycan Dövlət Universiteti",
+  "universityOptions.qafqaz": "Qafqaz Universiteti",
+  "universityOptions.ada": "ADA Universiteti",
+  "universityOptions.bmu": "Bakı Mühəndislik Universiteti",
+  "universityOptions.gdu": "Gəncə Dövlət Universiteti",
+  "universityOptions.sdu1": "Sumqayıt Dövlət Universiteti",
+  "universityOptions.ktu": "Xəzər Universiteti",
+  "universityOptions.kdu": "Azərbaycan Kooperasiya Universiteti",
+  "universityOptions.imt": "İqtisad Universiteti",
+  "universityOptions.mdu": "Mingəçevir Dövlət Universiteti",
+  "universityOptions.asu": "Azərbaycan Dövlət Neft və Sənaye Universiteti",
+  "universityOptions.adu2": "Azərbaycan Dillər Universiteti",
+  "universityOptions.lpu": "Lənkəran Dövlət Universiteti",
+  "universityOptions.ndu": "Naxçıvan Dövlət Universiteti",
+  "universityOptions.qdu": "Quba Dövlət Universiteti",
+  "universityOptions.sdu2": "Şəki Dövlət Universiteti",
+  "universityOptions.adu3": "Azərbaycan Dövlət Pedaqoji Universiteti",
+
+  "labelFaculty": "Fakültə",
+    "facultyOptions.informasika": "İnformasiya texnologiyaları və mühəndislik fakültəsi",
+    "facultyOptions.iqtisadiyyat": "İqtisadiyyat və idarəetmə fakültəsi",
+    
+  "labelSpecialty": "İxtisas",
+  "specialtyOptions": {
+    "komp-muh": "Kompüter mühəndisliyi",
+    "informas-texn": "İnformasiya texnologiyaları",
+    "informas-tehluk": "İnformasiya təhlükəsizliyi",
+    "biznesin-idare": "Biznesin idarə edilməsi",
+    "iqtisadiyyat": "İqtisadiyyat",
+    "maliyyə": "Maliyyə",
+    "huquq": "Hüquq",
+    "tibb": "Tibb",
+    "muhendis-elektrik": "Elektrik mühəndisliyi",
+    "muhendis-mex": "Mexanika mühəndisliyi",
+    "neft-qaz-muh": "Neft-qaz mühəndisliyi",
+    "arxitektura": "Memarlıq",
+    "psixologiya": "Psixologiya"
+  },
+  "labelEntryYear": "Qəbul olduğu il",
+  "labelGraduationYear": "Bitirdiyi il",
+  "labelStatus": "Status",
+  "statusOptions": {
+    "aktiv": "Təhsil alır",
+    "bitirib": "Bitirib"
+  },
+  "labelEducationBasis": "Təhsil əsasları",
+  "educationBasisOptions": {
+    "dovlet": "Dövlət sifarişli",
+    "odenisli": "Ödənişli əsaslarla"
+  },
+  "labelEducationLevel": "Təhsil səviyyəsi",
+  "educationLevelOptions": {
+    "bakalavr": "Bakalavr",
+    "magistr": "Magistr",
+    "doktorantura": "Doktorantura"
+  },
+  "labelEducationForm": "Təhsilalma forması",
+  "educationFormOptions": {
+    "eyani": "Əyani",
+    "qiyabi": "Qiyabi"
+  },
+  "labelStudentID": "Tələbə ID-si",
+  "placeholderStudentID": "Məsələn: 202106458",
+  "labelGPA": "GPA - Orta bal",
+
+  "labelAttestatID": "Attestat İD -si",
+  "placeholderAttestatID": "Məsələn: AB123456",
+  "addEducationButton": "+ Təhsil əlavə et",
+
+  "jobInfoTitle": "İş yeri məlumatları",
+  "labelJobName": "İş yeri 1",
+  "placeholderJobName": "İş yerinin adı",
+  "labelJobStartYear": "Başlama ili",
+  "labelJobPosition": "Vəzifəsi",
+  "addJobButton": "+ İş yeri əlavə et",
+
+  "languageInfoTitle": "Dil Biliyi",
+  "labelLanguageName": "Dil",
+  "languageOptions": {
+    "azerbaijan": "Azərbaycan dili",
+    "english": "İngilis dili",
+    "russian": "Rus dili",
+    "german": "Alman dili",
+    "french": "Fransız dili",
+    "spanish": "İspan dili",
+    "turkish": "Türk dili",
+    "arabic": "Ərəb dili",
+    "chinese": "Çin dili",
+    "italian": "İtalyan dili",
+    "korean": "Koreya dili"
+  },
+  "labelLanguageLevel": "Səviyyə",
+  "languageLevelOptions": {
+    "high": "Yüksək",
+    "medium": "Orta",
+    "low": "Zəif"
+  },
+  "addLanguageButton": "+ Dil əlavə et",
+
+  "contactInfoTitle": "Əlaqə Məlumatları",
+  "labelAddress": "Yaşadığı ünvan",
+  "placeholderAddress": "Bakı şəhəri, Yasamal rayonu, M. Rəhimov küçəsi 12",
+  "labelMobile": "Mobil nömrəniz",
+  "labelLinkedIn": "Linked-In profil linki",
+  "labelGithub": "Github profili",
+
+  "additionalInfoTitle": "Əlavə Məlumat",
+  "additionalInfoDescription": "* İstifadəçilər bu sahədə bacarıqları (liderlik və idarəetmə, ünsiyyət və prezentasiya bacarıqları), QHT-lərdə və cəmiyyətlərdə fəaliyyətləri, ictimai məsuliyyət layihələri, hobbiləri, maraqları, peşəkar məqsədləri və karyera planları haqqında məlumatları qeyd edə bilərlər.",
+  "textareaPlaceholder": "Əlavə məlumatınızı buraya daxil edin...",
+
+  "submitButton": "Qeydiyyatdan keç",
+
+
+
+
+  "graduate_search": "Məzun Axtarışı",
+  "search_placeholder": "Axtarış",
+  "no_results": "Nəticə tapılmadı.",
+  "details_modal_title": "Məzun Məlumatı",
+  "close_button": "Bağla",
+
+  "personal_info": "Şəxsi Məlumatlar",
+  "graduate": "Məzun",
+  "father_name": "Ata adı",
+  "birth_date": "Doğum tarixi",
+  "email": "Email",
+  "phone": "Telefon",
+  "address": "Ünvan",
+
+  "education_info": "Təhsil Məlumatları",
+  "university": "Universitet",
+  "faculty": "Fakültə",
+  "specialty": "İxtisas",
+  "admission_year": "Qəbul ili",
+  "graduation_year": "Bitirmə ili",
+  "status": "Status",
+  "funding": "Təhsil əsasları",
+  "degree_level": "Təhsil səviyyəsi",
+  "education_form": "Təhsil forması",
+  "gpa": "GPA",
+  "certificate_id": "Attestat ID",
+
+  "work_social": "İş və Sosial",
+  "workplace": "İş yeri",
+  "position": "Vəzifə",
+  "linkedin": "LinkedIn",
+  "github": "GitHub",
+
+
+  "personal_page":"Şəxsi səhifə",
+  "telephone":"tel",
+  "home_page":"Əsas səhifəyə keçid",
+  "name_surname":"Adı, Soyadı və Atasının adı",
+  "citizenship":"Vətəndaşlığı"
+
+}
+
+
+
+

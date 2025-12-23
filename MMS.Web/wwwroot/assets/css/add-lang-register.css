@@ -1,0 +1,113 @@
+/* Dil Biliyi Bölməsi */
+.language-container {
+  width: 100%;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+
+.language-container .title {
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.language-container .title::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;
+  height: 3px;
+  width: 80%;
+  max-width: 650px;
+  background: linear-gradient(135deg, #5bd5fb, #37bbf7, #5080ee, #448ce4);
+  border-radius: 2px;
+}
+
+/* 3 sütunlu düzülüş */
+.columns-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-box select {
+  height: 45px;
+  padding: 0 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-box select:focus {
+  border-color: #5080ee;
+}
+
+/* "+ Dil əlavə et" düyməsi */
+.language-container button {
+  display: block;
+  margin: 20px auto 0;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #5bd5fb, #5080ee);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(80, 128, 238, 0.3);
+}
+
+.language-container button:hover {
+  background: linear-gradient(135deg, #37bbf7, #b944e4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(185, 68, 228, 0.4);
+}
+
+/* Dinamik dil sahələri */
+#languageFieldsContainer .columns-3 {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+#languageFieldsContainer .input-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsiv dizayn */
+@media (max-width: 992px) {
+  .columns-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .columns-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .language-container .title::before {
+    width: 90%;
+  }
+}
