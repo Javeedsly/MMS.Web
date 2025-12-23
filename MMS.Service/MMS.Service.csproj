@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MMS.Data\MMS.Data.csproj" />
+  </ItemGroup>
+
 </Project>
