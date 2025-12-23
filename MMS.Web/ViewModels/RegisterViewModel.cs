@@ -4,22 +4,28 @@ namespace MMS.Web.ViewModels
 {
     public class RegisterViewModel
     {
-        [Required(ErrorMessage = "Ad vacibdir")]
+        [Required(ErrorMessage = "Ad daxil edilməlidir")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Soyad vacibdir")]
+        [Required(ErrorMessage = "Soyad daxil edilməlidir")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Email vacibdir")]
+        [Required(ErrorMessage = "Email daxil edilməlidir")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Şifrə vacibdir")]
+        [Required(ErrorMessage = "Şifrə daxil edilməlidir")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Compare("Password", ErrorMessage = "Şifrələr uyğun gəlmir")]
         [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Şifrələr uyğun gəlmir")]
         public string ConfirmPassword { get; set; }
+
+        // Əvvəl int idisə, indi string olmalıdır
+        public string? GraduationYear { get; set; }
+        public string? University { get; set; }
+        public string? Faculty { get; set; }
+        public string? Specialty { get; set; }
     }
 }

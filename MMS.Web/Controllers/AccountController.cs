@@ -9,136 +9,103 @@ namespace MMS.Web.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly IWebHostEnvironment _env;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IWebHostEnvironment env)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _env = env;
         }
 
-        // --- QEYDİYYAT ---
+        // --- QEYDİYYAT (REGISTER) ---
+        [HttpGet]
         public IActionResult Register()
         {
-            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var user = new AppUser
+            if (ModelState.IsValid)
             {
-                UserName = model.Email,
-                Email = model.Email,
-                FirstName = model.FirstName,
-                LastName = model.LastName
-            };
+                var user = new AppUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+                    // Yeni sahələr (Hamısı string olduğu üçün xəta verməyəcək)
+                    GraduationYear = model.GraduationYear,
+                    University = model.University,
 
-            if (result.Succeeded)
-            {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Profile");
-            }
+                    // Digər sahələr default boş ola bilər, onları Profil səhifəsində dolduracaq
+                };
 
-            foreach (var error in result.Errors)
-            {
-                ModelState.AddModelError("", error.Description);
+                var result = await _userManager.CreateAsync(user, model.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "User"); // Qeydiyyatdan sonra birbaşa profilə gedir
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
             return View(model);
         }
 
-        // --- GİRİŞ ---
+        // --- GİRİŞ (LOGIN) ---
+        [HttpGet]
         public IActionResult Login()
         {
-            if (User.Identity.IsAuthenticated) return RedirectToAction("Index", "Home");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
-            }
+                // Email ilə istifadəçini tapırıq
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
+                {
+                    // Şifrəni yoxlayırıq (UserName əvəzinə Email istifadə edirik)
+                    var result = await _signInManager.PasswordSignInAsync(user, model.Password, model.RememberMe, false);
 
-            ModelState.AddModelError("", "Email və ya şifrə yanlışdır.");
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "User");
+                    }
+                }
+
+                ModelState.AddModelError("", "Email və ya şifrə yanlışdır.");
+            }
             return View(model);
         }
 
-        // --- ÇIXIŞ ---
+        // --- ÇIXIŞ (LOGOUT) ---
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
-        // --- PROFİL ---
+        // --- PROFİL (ReadOnly - Başqasının baxması üçün) ---
+        // Bu metod əgər siz "Account/Profile" linkinə klikləsəniz işləyəcək
         public async Task<IActionResult> Profile()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null) return RedirectToAction("Login");
-
-            var model = new ProfileViewModel
+            // Əgər istifadəçi öz profilinə baxırsa, onu User/Index-ə yönəldirik
+            if (_signInManager.IsSignedIn(User))
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
-                About = user.About,
-                University = user.University,
-                Degree = user.Degree,
-                GraduationYear = user.GraduationYear,
-                Profession = user.Profession,
-                CurrentImage = user.ProfileImageUrl
-            };
-            return View(model);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Profile(ProfileViewModel model)
-        {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null) return RedirectToAction("Login");
-
-            user.FirstName = model.FirstName;
-            user.LastName = model.LastName;
-            user.About = model.About;
-            user.University = model.University;
-            user.Degree = model.Degree;
-            user.GraduationYear = model.GraduationYear;
-            user.Profession = model.Profession;
-
-            if (model.Photo != null)
-            {
-                string folder = Path.Combine(_env.WebRootPath, "uploads");
-                if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
-
-                string fileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                string path = Path.Combine(folder, fileName);
-
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await model.Photo.CopyToAsync(stream);
-                }
-                user.ProfileImageUrl = fileName;
+                return RedirectToAction("Index", "User");
             }
-
-            await _userManager.UpdateAsync(user);
-
-            // View-u yenilə
-            model.CurrentImage = user.ProfileImageUrl;
-            ViewBag.Message = "Profil yeniləndi!";
-            return View(model);
+            return RedirectToAction("Login");
         }
     }
 }

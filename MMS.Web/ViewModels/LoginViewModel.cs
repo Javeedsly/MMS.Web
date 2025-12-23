@@ -13,6 +13,6 @@ namespace MMS.Web.ViewModels
         public string Password { get; set; }
 
         [Display(Name = "Məni xatırla")]
-        public bool RememberMe { get; set; }
+        public bool RememberMe { get; set; } // Bu sətir Login.cshtml üçün vacibdir
     }
 }

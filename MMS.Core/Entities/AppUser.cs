@@ -2,18 +2,22 @@
 
 namespace MMS.Core.Entities
 {
-    // IdentityUser bizə hazır username, password, email sahələrini verir
     public class AppUser : IdentityUser
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string? ProfileImageUrl { get; set; } // Profil şəkli üçün
+        public string? FatherName { get; set; }
+        public string? ProfileImageUrl { get; set; }
 
-        // Tələbə haqqında əlavə məlumatlar (Education, Job və s.)
-        public string? About { get; set; }
+        // String etdik ki, həm "2024", həm də "2020-2024" yazıla bilsin
+        public string? GraduationYear { get; set; }
+
         public string? University { get; set; }
         public string? Degree { get; set; }
-        public int GraduationYear { get; set; }
-        public string? Profession { get; set; } // İş
+        public string? Profession { get; set; }
+        public string? About { get; set; }
+        public string? Languages { get; set; }
+        public string? EducationInfo { get; set; }
+        public string? JobInfo { get; set; }
     }
 }

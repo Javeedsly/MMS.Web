@@ -40,7 +40,8 @@
                             <p class="card-text text-start small">
                                 <strong>Universitet:</strong> @(student.University ?? "-") <br>
                                 <strong>İxtisas:</strong> @(student.Degree ?? "-") <br>
-                                <strong>Məzun İli:</strong> @(student.GraduationYear == 0 ? "-" : student.GraduationYear.ToString())
+
+                                <strong>Məzun İli:</strong> @(string.IsNullOrEmpty(student.GraduationYear) ? "-" : student.GraduationYear)
                             </p>
 
                             @if (!string.IsNullOrEmpty(student.About))

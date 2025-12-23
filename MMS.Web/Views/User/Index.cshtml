@@ -1,0 +1,91 @@
+﻿@model MMS.Web.ViewModels.UserUpdateViewModel
+@{
+    ViewData["Title"] = "Şəxsi Kabinet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center p-3 shadow-sm">
+                @if (!string.IsNullOrEmpty(Model.ExistingImage))
+                {
+                    <img src="~/uploads/@Model.ExistingImage" class="img-thumbnail rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;" />
+                }
+                else
+                {
+                    <img src="https://via.placeholder.com/150" class="img-thumbnail rounded-circle mb-3" />
+                }
+                <h4>@Model.FirstName @Model.LastName</h4>
+                <p class="text-muted">@Model.Email</p>
+
+                <hr />
+
+                <form asp-action="Delete" method="post" onsubmit="return confirm('Hesabınızı silmək istədiyinizə əminsiniz? Bu əməliyyat geri qaytarıla bilməz!');">
+                    <button type="submit" class="btn btn-danger w-100">
+                        <i class="fa fa-trash"></i> Hesabı Sil
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Məlumatları Yenilə</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Update" method="post" enctype="multipart/form-data">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Ad</label>
+                                <input asp-for="FirstName" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Soyad</label>
+                                <input asp-for="LastName" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Profil Şəkli</label>
+                            <input asp-for="ProfilePhoto" type="file" class="form-control" accept="image/*" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Təhsil Məlumatları</label>
+                            <textarea asp-for="EducationInfo" class="form-control" rows="2" placeholder="Universitet, İxtisas..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">İş Yeri</label>
+                            <textarea asp-for="JobInfo" class="form-control" rows="2" placeholder="Hansı şirkət, Vəzifə..."></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Bildiyiniz Dillər</label>
+                            <input asp-for="Languages" class="form-control" placeholder="Azərbaycan, İngilis, Rus..." />
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-save"></i> Yadda Saxla
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
