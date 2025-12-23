@@ -1,4 +1,6 @@
 <Solution>
   <Project Path="MMS.Core/MMS.Core.csproj" />
+  <Project Path="MMS.Data/MMS.Data.csproj" />
+  <Project Path="MMS.Service/MMS.Service.csproj" />
   <Project Path="MMS.Web/MMS.Web.csproj" />
 </Solution>

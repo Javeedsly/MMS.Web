@@ -1,0 +1,17 @@
+﻿@model List<MMS.Core.Entities.AppUser>
+
+<div class="container">
+    <div class="row">
+        @foreach (var student in Model)
+        {
+            <div class="col-md-4">
+                <div class="student-card">
+                    <img src="~/uploads/@(student.ProfileImageUrl ?? "default.png")" alt="">
+                    <h4>@student.FirstName @student.LastName</h4>
+                    <p>@student.University - @student.Degree</p>
+                    <a href="/Home/StudentDetails/@student.Id" class="btn">Ətraflı Bax</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
