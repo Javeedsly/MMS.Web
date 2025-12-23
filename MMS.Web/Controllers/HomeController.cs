@@ -1,30 +1,26 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MMS.Core.Entities;
-using System.Linq;
 
-namespace MMS.Web.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly UserManager<AppUser> _userManager;
+
+    public HomeController(UserManager<AppUser> userManager)
     {
-        private readonly UserManager<AppUser> _userManager;
+        _userManager = userManager;
+    }
 
-        public HomeController(UserManager<AppUser> userManager)
-        {
-            _userManager = userManager;
-        }
+    // --- BU METOD MÜTLƏQ OLMALIDIR ---
+    public IActionResult Index()
+    {
+        return View();
+    }
+    // ---------------------------------
 
-        // --- BU HİSSƏ ÇATIŞMIRDI (SƏHVİN SƏBƏBİ) ---
-        public IActionResult Index()
-        {
-            return View();
-        }
-        // -------------------------------------------
-
-        public IActionResult Graduates()
-        {
-            var users = _userManager.Users.ToList();
-            return View(users);
-        }
+    public IActionResult Graduates()
+    {
+        var users = _userManager.Users.ToList();
+        return View(users);
     }
 }
