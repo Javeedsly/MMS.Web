@@ -10,34 +10,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewData["Title"] - MMS</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="~/assets/css/style.css">
     <link rel="stylesheet" href="~/assets/css/animated.css">
     <link rel="stylesheet" href="~/assets/css/owl.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
 </head>
 
 <body>
-    <div id="js-preloader" class="js-preloader">
-        <div class="preloader-inner">
-            <span class="dot"></span>
-            <div class="dots"><span></span><span></span><span></span></div>
-        </div>
-    </div>
 
-    <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <header class="header-area wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <nav class="main-nav">
                         <a asp-controller="Home" asp-action="Index" class="logo">
-                            <img src="~/assets/images/logo.png" alt="MMS Logo" style="max-height: 50px;">
+                            <img src="~/assets/images/logo.png" alt="MMS Logo">
                         </a>
 
                         <ul class="nav">
-                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Index" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Ana Səhifə</a></li>
-                            <li class="scroll-to-section"><a asp-controller="Home" asp-action="Graduates" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Graduates" ? "active" : "")">Məzunlar</a></li>
+                            <li><a asp-controller="Home" asp-action="Index" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">Ana Səhifə</a></li>
+                            <li><a asp-controller="Home" asp-action="Graduates" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Graduates" ? "active" : "")">Məzunlar</a></li>
 
                             @if (SignInManager.IsSignedIn(User))
                             {
@@ -46,17 +42,21 @@
                                     <a href="javascript:;">
                                         @if (user != null && !string.IsNullOrEmpty(user.ProfileImageUrl))
                                         {
-                                            <img src="~/uploads/@user.ProfileImageUrl" style="width:30px; height:30px; border-radius:50%; margin-right:5px; object-fit:cover;" />
+                                            <img src="~/uploads/@user.ProfileImageUrl" class="nav-profile-img" />
                                         }
                                         else
                                         {
-                                            <i class="fa fa-user" style="margin-right:5px;"></i>
+                                            <i class="fa fa-user-circle nav-profile-icon"></i>
                                         }
-                                        @(user?.FirstName ?? "Hesabım")
+                                        <span>@(user?.FirstName ?? "Hesabım")</span>
                                     </a>
                                     <ul>
                                         <li><a asp-controller="Account" asp-action="Profile">Profilim</a></li>
-                                        <li><a asp-controller="Account" asp-action="Logout">Çıxış</a></li>
+                                        <li>
+                                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                                                <button type="submit" class="logout-btn">Çıxış</button>
+                                            </form>
+                                        </li>
                                     </ul>
                                 </li>
                             }
@@ -64,7 +64,7 @@
                             {
                                 <li>
                                     <div class="gradient-button">
-                                        <a asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in-alt"></i> Hesab Aç</a>
+                                        <a asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in-alt"></i> Daxil Ol</a>
                                     </div>
                                 </li>
                             }
@@ -76,8 +76,10 @@
         </div>
     </header>
 
-    <div class="container" style="min-height: 500px; margin-top: 100px;">
-        @RenderBody()
+    <div class="page-content-wrapper">
+        <div class="container">
+            @RenderBody()
+        </div>
     </div>
 
     <footer>

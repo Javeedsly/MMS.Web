@@ -1,29 +1,53 @@
 ﻿@model MMS.Web.ViewModels.LoginViewModel
 @{
-    ViewData["Title"] = "Giriş";
+    Layout = null; // Standart şablonu ləğv edirik
 }
 
-<div class="container mt-5" style="max-width: 500px;">
-    <h2 class="text-center">Hesaba Giriş</h2>
-    <form asp-action="Login" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="mb-3">
-            <label>Email</label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="~/assets/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="login-box">
+                <h2 data-i18n="welcome">Xoş gəlmisiniz!</h2>
+                <p data-i18n="input_Email_password">E-mail və parolunuzu daxil edin</p>
+
+                <form asp-action="Login" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger" style="color:red; font-size:12px; margin-bottom:10px;"></div>
+
+                    <label for="email">E-mail</label>
+                    <input asp-for="Email" type="email" id="email" placeholder="Enter your email" required />
+                    <span asp-validation-for="Email" style="color:red; font-size:11px;"></span>
+
+                    <label for="password" data-i18n="password">Parol</label>
+                    <input asp-for="Password" type="password" id="password" placeholder="••••••••" required />
+                    <span asp-validation-for="Password" style="color:red; font-size:11px;"></span>
+
+                    <button type="submit" class="primary-btn" data-i18n="loginButton">Daxil ol</button>
+
+                    <button type="button" class="google-btn">
+                        <img src="https://www.svgrepo.com/show/355037/google.svg" />
+                        <span data-i18n="google">Google hasabı ilə davam elə</span>
+                    </button>
+
+                    <div class="signup-text">
+                        <span data-i18n="noAccount">Həsabınız yoxdu?</span>
+                        <a asp-action="Register">Qeydiyyatdan keçin</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="mb-3">
-            <label>Şifrə</label>
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
+        <div class="art-section">
+            <img src="~/assets/images/logo.png" alt="Logo" class="logo-image" />
         </div>
-        <button type="submit" class="btn btn-primary w-100">Daxil ol</button>
-    </form>
-    <div class="text-center mt-3">
-        <a asp-action="Register">Hələ də hesabın yoxdur? Qeydiyyat</a>
     </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <script src="~/assets/js/lang.js"></script>
+</body>
+</html>

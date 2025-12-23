@@ -11,5 +11,8 @@ namespace MMS.Web.ViewModels
         [Required(ErrorMessage = "Şifrə daxil edilməlidir")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [Display(Name = "Məni xatırla")]
+        public bool RememberMe { get; set; }
     }
 }
