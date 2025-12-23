@@ -1,0 +1,39 @@
+﻿@model MMS.Web.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Qeydiyyat";
+}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <h2 class="text-center">Qeydiyyat</h2>
+    <form asp-action="Register" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Ad</label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Soyad</label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Şifrə</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Təkrar Şifrə</label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Qeydiyyatdan Keç</button>
+    </form>
+</div>

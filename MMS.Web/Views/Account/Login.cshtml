@@ -1,0 +1,25 @@
+﻿@model MMS.Web.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Giriş";
+}
+
+<div class="container mt-5" style="max-width: 500px;">
+    <h2 class="text-center">Hesaba Giriş</h2>
+    <form asp-action="Login" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Şifrə</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Daxil ol</button>
+    </form>
+    <div class="text-center mt-3">
+        <a asp-action="Register">Hələ də hesabın yoxdur? Qeydiyyat</a>
+    </div>
+</div>

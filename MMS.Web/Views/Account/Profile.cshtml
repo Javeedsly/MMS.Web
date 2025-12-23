@@ -1,0 +1,70 @@
+﻿@model MMS.Web.ViewModels.ProfileViewModel
+@{
+    ViewData["Title"] = "Profilim";
+}
+
+<div class="container mt-5">
+    <h2>Mənim Profilim</h2>
+    <form asp-action="Profile" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <div class="mb-3">
+                    @if (!string.IsNullOrEmpty(Model.CurrentImage))
+                    {
+                        <img src="~/uploads/@Model.CurrentImage" class="rounded-circle img-thumbnail" style="width: 200px; height: 200px; object-fit: cover;" />
+                    }
+                    else
+                    {
+                        <img src="https://via.placeholder.com/200" class="rounded-circle img-thumbnail" />
+                    }
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Profil Şəkli Dəyiş</label>
+                    <input type="file" name="Photo" class="form-control" />
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Ad</label>
+                        <input asp-for="FirstName" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Soyad</label>
+                        <input asp-for="LastName" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label>Haqqında</label>
+                    <textarea asp-for="About" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Universitet</label>
+                        <input asp-for="University" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>İxtisas</label>
+                        <input asp-for="Degree" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Məzun İli</label>
+                        <input asp-for="GraduationYear" class="form-control" type="number" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Hazırkı İş</label>
+                        <input asp-for="Profession" class="form-control" />
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+            </div>
+        </div>
+    </form>
+</div>
