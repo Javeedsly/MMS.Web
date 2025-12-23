@@ -1,8 +1,118 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Ana Səhifə";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-6 align-self-center">
+                        <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>MMS - Məzun Məlumat Sistemi</h2>
+                                    <h4>Keçmişin izini, gələcəyin yolunu burada tapın!</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <img src="~/assets/images/slider.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="about" class="about-us section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <div class="section-heading">
+                    <h4><em>Azərbaycan Texniki Universiteti</em></h4>
+                    <p>
+                        Məzun Məlumat Sistemi (MMS) Azərbaycan Texniki Universitetinin
+                        <u><em>Kompüter texnologiyaları kafedrasının müdiri...</em></u>
+                        hazırlanmışdır.
+                        <br /> Azərbaycan Texniki Universiteti (AzTU) — ölkənin
+                        mühəndislik və texnologiya sahəsində ixtisaslaşmış ən qabaqcıl
+                        ali təhsil ocaqlarından biridir.
+                        <br />⭐ Niyə AzTU?
+                        <br />🔬 Güclü mühəndislik fakültələri...
+                        <br />🌍 Beynəlxalq əməkdaşlıqlar...
+                        <br />
+                        <a href="https://aztu.edu.az/az">Azərbaycan Texniki Universitetinin rəsmi səhifəsi</a>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="right-image">
+                    <img src="~/assets/images/AzTU.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="services" class="services section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <h4><em>Sistem & Xidmətimiz</em></h4>
+                    <img src="~/assets/images/heading-line-dec.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="service-item first-service">
+                    <div class="icon"></div>
+                    <h4>Məzun Qeydiyyatı</h4>
+                    <p>Məzunlarımız sistemdə öz məlumatlarını rahatlıqla qeyd edib gələcək üçün arxivləşdirə bilərlər.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="service-item second-service">
+                    <div class="icon"></div>
+                    <h4>Sürətli Məlumat Girişi</h4>
+                    <p>Formu doldurmaq cəmi bir neçə dəqiqə çəkir – rahat interfeys və istifadəçi dostu dizayn.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="service-item third-service">
+                    <div class="icon"></div>
+                    <h4>Qruplaşdırılma</h4>
+                    <p>Məzunlar fakültəyə, ixtisasa və bitirmə ilinə görə sistemdə qruplaşdırılır.</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="service-item fourth-service">
+                    <div class="icon"></div>
+                    <h4>24/7 Əlaqə və Dəstək</h4>
+                    <p>Suallarınız yaranarsa, əlaqə bölməsi vasitəsilə bizimlə asanlıqla əlaqə saxlaya bilərsiniz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fin" class="services section" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <div style="text-align: center; margin-top: 20px">
+                        <a class="btn btn-primary" style="background-color: #4b8ef1; border: none; padding: 12px 30px; border-radius: 25px; color: #fff;" asp-controller="Account" asp-action="Register">Qeydiyyatdan keç</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
