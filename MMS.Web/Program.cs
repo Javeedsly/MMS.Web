@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MMS.Core.Entities;
+using MMS.Core.Interfaces;
 using MMS.Data.Context;
+using MMS.Service.Services;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
-
+builder.Services.AddScoped<IEmailService, LocalFileEmailService>();
 builder.Services.AddControllersWithViews();
-
+// Local fayl servisini qoşuruq
 var app = builder.Build();
 
 // ... (digər middleware-lər: HttpsRedirection, StaticFiles və s.)

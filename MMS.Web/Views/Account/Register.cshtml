@@ -1,6 +1,7 @@
 ﻿@model MMS.Web.ViewModels.RegisterViewModel
 @{
     Layout = null;
+    ViewData["Title"] = "Qeydiyyat";
 }
 
 <!DOCTYPE html>
@@ -8,152 +9,173 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MMS</title>
+    <link href="~/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="~/assets/css/register.css" />
-    <link rel="stylesheet" href="~/assets/css/add-info-container.css">
-    <link rel="stylesheet" href="~/assets/css/add-lang-register.css">
-    <link rel="stylesheet" href="~/assets/css/owl.css">
-
-    <title data-i18n="pageRegister">Qeydiyyat Forması</title>
+    <link rel="stylesheet" href="~/assets/css/style.css" asp-append-version="true">
 </head>
 <body>
-    <div class="main-container">
-        <nav class="sidebar">
-            <ul class="nav">
-                <li><a asp-controller="Home" asp-action="Index" class="return-home" data-i18n="navHome">Geri</a></li>
-            </ul>
-        </nav>
+
+    <div class="auth-body-bg">
+        <div class="container d-flex justify-content-center">
+
+            <div class="auth-card wide">
+
+                <div class="auth-sidebar">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/assets/images/white-logo.png" alt="MMS Logo" class="auth-logo" />
+                    </a>
+                    <h2 data-i18n="pageRegister">Yeni Hesab</h2>
+                    <p>Məzun şəbəkəmizə qoşulun və imkanlardan yararlanın.</p>
+
+                    <div class="mt-4">
+                        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light btn-sm px-4">
+                            <i class="fas fa-home me-2"></i> Ana Səhifə
+                        </a>
+                    </div>
+                </div>
+
+                <div class="auth-main">
+                    <div class="auth-header mb-4">
+                        <h3>Qeydiyyat Formu</h3>
+                        <p>Zəhmət olmasa bütün məlumatları düzgün doldurun.</p>
+                    </div>
+
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-user"></i> <span data-i18n="personalInfoTitle">Şəxsi Məlumatlar</span>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="modern-input-group">
+                                <label asp-for="FirstName" class="modern-label" data-i18n="labelName">Ad</label>
+                                <input asp-for="FirstName" class="modern-input" placeholder="Adınız" />
+                                <span asp-validation-for="FirstName" class="text-danger small"></span>
+                            </div>
+                            <div class="modern-input-group">
+                                <label asp-for="LastName" class="modern-label" data-i18n="labelSurname">Soyad</label>
+                                <input asp-for="LastName" class="modern-input" placeholder="Soyadınız" />
+                                <span asp-validation-for="LastName" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="modern-input-group">
+                                <label class="modern-label" data-i18n="labelFatherName">Ata adı</label>
+                                <input type="text" name="FatherName" class="modern-input" />
+                            </div>
+                            <div class="modern-input-group">
+                                <label class="modern-label" data-i18n="labelDOB">Doğum tarixi</label>
+                                <input type="date" name="DOB" class="modern-input" />
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="modern-input-group">
+                                <label class="modern-label" data-i18n="labelFIN">FİN kod</label>
+                                <input type="text" name="FinCode" class="modern-input" placeholder="xxxxxxx" />
+                            </div>
+                            <div class="modern-input-group">
+                                <label class="modern-label" data-i18n="labelCitizenship">Vətəndaşlıq</label>
+                                <select name="Citizenship" class="modern-input">
+                                    <option value="AZ">Azərbaycan</option>
+                                    <option value="Other">Digər</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modern-input-group">
+                            <label class="modern-label" data-i18n="genderTitle">Cins</label>
+                            <div class="gender-selector">
+                                <label class="gender-label">
+                                    <input type="radio" name="Gender" value="male" checked hidden />
+                                    <span><i class="fas fa-mars"></i> <span data-i18n="genderMale">Kişi</span></span>
+                                </label>
+                                <label class="gender-label">
+                                    <input type="radio" name="Gender" value="female" hidden />
+                                    <span><i class="fas fa-venus"></i> <span data-i18n="genderFemale">Qadın</span></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="section-divider mt-4">
+                            <i class="fas fa-graduation-cap"></i> <span data-i18n="educationInfoTitle">Təhsil</span>
+                        </div>
+
+                        <div class="modern-input-group">
+                            <label asp-for="University" class="modern-label" data-i18n="labelUniversity">Universitet</label>
+                            <select asp-for="University" class="modern-input">
+                                <option value="">Seçin...</option>
+                                <option value="aztu">Azərbaycan Texniki Universiteti</option>
+                            </select>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="modern-input-group">
+                                <label asp-for="Faculty" class="modern-label">Fakültə</label>
+                                <select asp-for="Faculty" class="modern-input">
+                                    <option value="">Seçin...</option>
+                                    <option value="it">İnformasiya texnologiyaları</option>
+                                </select>
+                            </div>
+                            <div class="modern-input-group">
+                                <label asp-for="Specialty" class="modern-label">İxtisas</label>
+                                <select asp-for="Specialty" class="modern-input">
+                                    <option value="">Seçin...</option>
+                                    <option value="cs">Kompüter elmləri</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modern-input-group">
+                            <label asp-for="GraduationYear" class="modern-label">Məzun İli</label>
+                            <input asp-for="GraduationYear" class="modern-input" placeholder="məs: 2024" />
+                        </div>
+
+                        <div class="section-divider mt-4">
+                            <i class="fas fa-lock"></i> <span data-i18n="contactInfoTitle">Hesab Təhlükəsizliyi</span>
+                        </div>
+
+                        <div class="modern-input-group">
+                            <label asp-for="Email" class="modern-label">Email</label>
+                            <input asp-for="Email" type="email" class="modern-input" placeholder="mail@example.com" />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="modern-input-group">
+                                <label asp-for="Password" class="modern-label">Şifrə</label>
+                                <input asp-for="Password" type="password" class="modern-input" />
+                                <span asp-validation-for="Password" class="text-danger small"></span>
+                            </div>
+                            <div class="modern-input-group">
+                                <label asp-for="ConfirmPassword" class="modern-label">Şifrə Təkrarı</label>
+                                <input asp-for="ConfirmPassword" type="password" class="modern-input" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-modern mt-4" data-i18n="registerButton">
+                            Qeydiyyatı Tamamla <i class="fas fa-check-circle"></i>
+                        </button>
+
+                        <div class="auth-footer">
+                            <span data-i18n="haveAccount">Artıq hesabınız var?</span>
+                            <a asp-action="Login" class="auth-link">Daxil olun</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <form asp-action="Register" method="post" id="mainRegisterForm">
-        <div asp-validation-summary="ModelOnly" style="color:white; text-align:center; margin-bottom:10px;"></div>
-
-        <div class="container">
-            <div class="title" data-i18n="personalInfoTitle">Şəxsi Məlumatlar</div>
-            <div class="columns-3">
-                <div class="input-box">
-                    <label data-i18n="labelName">Adı</label>
-                    <input asp-for="FirstName" placeholder="Adınız" required />
-                    <span asp-validation-for="FirstName"></span>
-                </div>
-                <div class="input-box">
-                    <label data-i18n="labelSurname">Soyadı</label>
-                    <input asp-for="LastName" placeholder="Soyadınız" required />
-                    <span asp-validation-for="LastName"></span>
-                </div>
-                <div class="input-box">
-                    <label data-i18n="labelFatherName">Atasının adı</label>
-                    <input type="text" name="FatherName" required />
-                </div>
-            </div>
-
-            <div class="columns-3">
-                <div class="input-box">
-                    <label data-i18n="labelDOB">Doğum tarixi</label>
-                    <input type="text" name="DOB" placeholder="DD/MM/YYYY" required />
-                </div>
-                <div class="input-box">
-                    <label data-i18n="labelFIN">FİN kod</label>
-                    <input type="text" name="FinCode" required />
-                </div>
-                <div class="input-box">
-                    <label data-i18n="labelCitizenship">Vətəndaşlıq</label>
-                    <select name="Citizenship" required>
-                        <option value="" data-i18n="optionSelect">Seçin</option>
-                        <option value="AZ">Azərbaycan</option>
-                        <option value="Other">Digər</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="gender-details">
-                <div class="category">
-                    <span class="gender-title" data-i18n="genderTitle">Gender:</span>
-                    <label class="gender-option">
-                        <input type="radio" name="Gender" value="male" required />
-                        <span class="custom-radio"></span>
-                        <span class="gender" data-i18n="genderMale">Kişi</span>
-                    </label>
-                    <label class="gender-option">
-                        <input type="radio" name="Gender" value="female" />
-                        <span class="custom-radio"></span>
-                        <span class="gender" data-i18n="genderFemale">Qadın</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="title" data-i18n="educationInfoTitle">Təhsil Məlumatları</div>
-            <div class="education-section">
-                <div class="columns-3">
-                    <div class="input-box">
-                        <label data-i18n="labelUniversity">Təhsil müəssisəsi</label>
-                        <select name="University" required>
-                            <option disabled selected>Seçin</option>
-                            <option value="aztu">Azərbaycan Texniki Universiteti</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <span>Fakültə</span>
-                        <select name="Faculty" required>
-                            <option disabled selected>Seçin</option>
-                            <option value="it">İnformasiya texnologiyaları</option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <span>İxtisas</span>
-                        <select name="Specialty" required>
-                            <option disabled selected>Seçin</option>
-                            <option value="cs">Kompüter elmləri</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="title" data-i18n="contactInfoTitle">Giriş Məlumatları</div>
-            <div class="columns-3">
-                <div class="input-box">
-                    <label>Email</label>
-                    <input asp-for="Email" placeholder="example@gmail.com" required />
-                    <span asp-validation-for="Email"></span>
-                </div>
-                <div class="input-box">
-                    <label>Şifrə</label>
-                    <input asp-for="Password" type="password" placeholder="********" required />
-                    <span asp-validation-for="Password"></span>
-                </div>
-                <div class="input-box">
-                    <label>Şifrə Təkrarı</label>
-                    <input asp-for="ConfirmPassword" type="password" placeholder="********" required />
-                    <span asp-validation-for="ConfirmPassword"></span>
-                </div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px; margin-bottom:50px;">
-            <button type="submit" class="register-btn" data-i18n="registerButton">
-                Qeydiyyatdan keç
-            </button>
-        </div>
-    </form>
-
-    <div class="col-lg-12">
-        <div class="copyright-text" style="color:white; text-align:center;">
-            <p>
-                Copyright © 2025 MMS <br />
-                Design: M Safarova
-            </p>
-        </div>
-    </div>
-
-    <script src="~/assets/js/register.js"></script>
-    <script src="~/assets/js/add-job.js"></script>
-    <script src="~/assets/js/graduation-year.js"></script>
-    <script src="~/assets/js/add-edu.js"></script>
-    <script src="~/assets/js/add-language.js"></script>
+    <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/assets/js/lang.js"></script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 </body>
 </html>

@@ -4,13 +4,14 @@
     ViewData["Title"] = "Məzunlar";
 }
 
-<div class="container" style="padding-bottom: 50px;">
+<div class="container page-padding">
+
     <div class="row">
         <div class="col-lg-8 offset-lg-2">
             <div class="section-heading text-center mb-5">
                 <h4>Bizim <em>Məzunlar</em></h4>
-                <img src="~/assets/images/heading-line-dec.png" alt="">
-                <p>Universitetimizi bitirən uğurlu tələbələrimiz.</p>
+                <img src="~/assets/images/heading-line-dec.png" alt="dekor">
+                <p>Universitetimizi bitirən və karyerasında uğur qazanan tələbələrimizlə tanış olun.</p>
             </div>
         </div>
     </div>
@@ -20,43 +21,60 @@
         {
             @foreach (var student in Model)
             {
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100 text-center shadow border-0" style="border-radius: 15px; overflow: hidden;">
-                        <div class="card-body p-4">
+                <div class="col-lg-4 col-md-6 col-12 mb-4">
+                    <div class="graduate-item">
+
+                        <div class="graduate-img-wrapper">
                             @if (!string.IsNullOrEmpty(student.ProfileImageUrl))
                             {
-                                <img src="~/uploads/@student.ProfileImageUrl" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #eee;" alt="Student">
+                                <img src="~/uploads/@student.ProfileImageUrl" alt="@student.FirstName">
                             }
                             else
                             {
-                                <img src="https://via.placeholder.com/120" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #eee;" alt="Default">
-                            }
-
-                            <h5 class="card-title text-dark">@student.FirstName @student.LastName</h5>
-                            <p class="text-muted mb-1">@(string.IsNullOrEmpty(student.Profession) ? "İş yeri qeyd olunmayıb" : student.Profession)</p>
-
-                            <hr>
-
-                            <p class="card-text text-start small">
-                                <strong>Universitet:</strong> @(student.University ?? "-") <br>
-                                <strong>İxtisas:</strong> @(student.Degree ?? "-") <br>
-
-                                <strong>Məzun İli:</strong> @(string.IsNullOrEmpty(student.GraduationYear) ? "-" : student.GraduationYear)
-                            </p>
-
-                            @if (!string.IsNullOrEmpty(student.About))
-                            {
-                                <p class="card-text small text-muted"><em>"@student.About"</em></p>
+                                <img src="https://via.placeholder.com/150/667eea/ffffff?text=@student.FirstName.Substring(0, 1)" alt="Default">
                             }
                         </div>
+
+                        <div class="graduate-info">
+                            <h5>@student.FirstName @student.LastName</h5>
+                            <span class="profession">
+                                @(string.IsNullOrEmpty(student.Profession) ? "Məzun" : student.Profession)
+                            </span>
+                        </div>
+
+                        <div class="graduate-details">
+                            <p>
+                                <span>Universitet:</span>
+                                <strong>@(student.University ?? "-")</strong>
+                            </p>
+                            <p>
+                                <span>İxtisas:</span>
+                                <strong>@(student.Degree ?? "-")</strong>
+                            </p>
+                            <p>
+                                <span>Məzun İli:</span>
+                                <strong>@(string.IsNullOrEmpty(student.GraduationYear) ? "-" : student.GraduationYear)</strong>
+                            </p>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(student.About))
+                        {
+                            <div class="graduate-quote">
+                                @student.About
+                            </div>
+                        }
+
                     </div>
                 </div>
             }
         }
         else
         {
-            <div class="col-12 text-center">
-                <div class="alert alert-warning">Hələlik sistemdə qeydiyyatdan keçmiş məzun yoxdur.</div>
+            <div class="col-12">
+                <div class="alert alert-light text-center shadow-sm" style="border-radius: 15px;">
+                    <i class="fas fa-info-circle text-primary me-2"></i>
+                    Hələlik sistemdə qeydiyyatdan keçmiş məzun yoxdur.
+                </div>
             </div>
         }
     </div>

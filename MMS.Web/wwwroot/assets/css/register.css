@@ -91,7 +91,7 @@ body {
             border-color: #5080ee;
         }
 
-/* Gender styles */
+ Gender styles 
 .gender-details {
     margin-top: 30px;
     text-align: center;
@@ -146,7 +146,7 @@ body {
     left: 3px;
 }
 
-/* Sidebar */
+ Sidebar 
 .main-container .sidebar .nav {
     list-style: none;
     padding: 0;
@@ -167,7 +167,7 @@ body {
         margin-bottom: 10px;
     }
 
-/* Buttons */
+ Buttons 
 button {
     cursor: pointer;
 }

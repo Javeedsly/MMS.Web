@@ -1,75 +1,103 @@
 ﻿@model MMS.Web.ViewModels.ProfileViewModel
 @{
     ViewData["Title"] = "Profilim";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // BU SƏTİR AÇILMALIDIR
 }
 
-<div class="container mt-5">
-    <h2>Mənim Profilim</h2>
-    <form asp-action="Profile" method="post" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="mb-3">
-                    @if (!string.IsNullOrEmpty(Model.CurrentImage))
-                    {
-                        <img src="~/uploads/@Model.CurrentImage" class="rounded-circle img-thumbnail" style="width: 200px; height: 200px; object-fit: cover;" />
-                    }
-                    else
-                    {
-                        <img src="https://via.placeholder.com/200" class="rounded-circle img-thumbnail" />
-                    }
+<div class="container mt-5 mb-5 pt-5">
+    <div class="modern-card p-0">
+        <form asp-action="Profile" method="post" enctype="multipart/form-data" class="w-100">
+            <div class="row g-0">
+                <div class="col-md-4 text-center bg-light p-4 d-flex flex-column justify-content-center align-items-center border-end">
+                    <label for="imageUpload" class="profile-img-wrapper" title="Şəkli dəyişmək üçün klikləyin">
+                        @if (!string.IsNullOrEmpty(Model.CurrentImage))
+                        {
+                            <img id="profilePreview" src="~/uploads/@Model.CurrentImage" alt="Profile Photo" />
+                        }
+                        else
+                        {
+                            <img id="profilePreview" src="https://via.placeholder.com/200?text=Foto+Yoxdur" alt="Default Photo" />
+                        }
+                        <div class="profile-img-overlay">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                    </label>
+                    <input type="file" asp-for="Photo" id="imageUpload" class="d-none" accept="image/*" onchange="previewImage(this)" />
+
+                    <h4 class="mt-3 text-dark font-weight-bold">@Model.FirstName @Model.LastName</h4>
+                    <p class="text-muted mb-0">@Model.Profession</p>
+                    <p class="small text-muted">@Model.Email</p>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Profil Şəkli Dəyiş</label>
-                    <input type="file" name="Photo" class="form-control" />
+
+                <div class="col-md-8 p-5">
+                    <h3 class="mb-4 text-primary" style="font-weight: 700; color: #764ba2 !important;">Profil Məlumatları</h3>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="FirstName" class="form-label-custom">Ad</label>
+                            <input asp-for="FirstName" class="form-control-custom" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="LastName" class="form-label-custom">Soyad</label>
+                            <input asp-for="LastName" class="form-control-custom" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="About" class="form-label-custom">Haqqında</label>
+                        <textarea asp-for="About" class="form-control-custom" rows="3" placeholder="Özünüz haqqında qısa məlumat..."></textarea>
+                    </div>
+
+                    <div class="section-title text-secondary">Təhsil və Karyera</div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="University" class="form-label-custom">Universitet</label>
+                            <input asp-for="University" class="form-control-custom" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Degree" class="form-label-custom">İxtisas (Dərəcə)</label>
+                            <input asp-for="Degree" class="form-control-custom" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="GraduationYear" class="form-label-custom">Məzun İli</label>
+                            <input asp-for="GraduationYear" type="number" class="form-control-custom" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Profession" class="form-label-custom">Hazırkı İş</label>
+                            <input asp-for="Profession" class="form-control-custom" />
+                        </div>
+                    </div>
+
+                    <input type="hidden" asp-for="Email" />
+
+                    <div class="d-flex justify-content-end mt-4">
+                        <button type="submit" class="btn-primary-custom" style="width: auto; padding: 12px 40px;">
+                            <i class="fas fa-save me-2"></i> Yadda Saxla
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Ad</label>
-                        <input asp-for="FirstName" class="form-control" />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Soyad</label>
-                        <input asp-for="LastName" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label>Haqqında</label>
-                    <textarea asp-for="About" class="form-control" rows="3"></textarea>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Universitet</label>
-                        <input asp-for="University" class="form-control" />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>İxtisas</label>
-                        <input asp-for="Degree" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>Məzun İli</label>
-                        <input asp-for="GraduationYear" class="form-control" type="number" />
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Hazırkı İş</label>
-                        <input asp-for="Profession" class="form-control" />
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Yadda Saxla</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
-
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#profilePreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 }
