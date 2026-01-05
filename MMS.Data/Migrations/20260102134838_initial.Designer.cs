@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MMS.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251223224301_FixAllTypes")]
-    partial class FixAllTypes
+    [Migration("20260102134838_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
