@@ -30,23 +30,23 @@
 		}
 	});
 
-	// 3. Modal Trigger
-	$("#modal_trigger").leanModal({
-		top: 100,
-		overlay: 0.6,
-		closeButton: ".modal_close"
-	});
+	// 3. Modal Trigger (Əgər istifadə olunursa)
+	if ($("#modal_trigger").length) {
+		$("#modal_trigger").leanModal({
+			top: 100,
+			overlay: 0.6,
+			closeButton: ".modal_close"
+		});
+	}
 
 	// 4. Login/Register Form Switcher
 	$(function () {
-		// Login Formunu Çağır
 		$("#login_form").click(function () {
 			$(".social_login").hide();
 			$(".user_login").show();
 			return false;
 		});
 
-		// Register Formunu Çağır
 		$("#register_form").click(function () {
 			$(".social_login").hide();
 			$(".user_register").show();
@@ -54,7 +54,6 @@
 			return false;
 		});
 
-		// Geri Qayıt (Social Forms)
 		$(".back_btn").click(function () {
 			$(".user_login").hide();
 			$(".user_register").hide();
@@ -64,7 +63,7 @@
 		});
 	});
 
-	// 5. Accordion (Acc) - Təkrarlanan hissə silindi, yalnız biri saxlanıldı
+	// 5. Accordion (Acc)
 	$(document).on("click", ".naccs .menu div", function () {
 		var numberIndex = $(this).index();
 
@@ -82,7 +81,7 @@
 		}
 	});
 
-	// 6. Menu Dropdown Toggle (Sizin soruşduğunuz hissə BURADADIR)
+	// 6. Menu Dropdown Toggle (BURA VACİBDİR)
 	if ($('.menu-trigger').length) {
 		$(".menu-trigger").on('click', function () {
 			$(this).toggleClass('active');
@@ -109,26 +108,47 @@
 				$(document).on("scroll", onScroll);
 			});
 		} else {
-			// Əgər element yoxdursa (başqa səhifədəsinizsə), Ana səhifəyə yönləndir
-			// Burada "/" işarəsi vacibdir ki, url düzgün formalaşsın
 			window.location.href = "/" + target;
 		}
 	});
 
-	// 8. Document Ready Scroll Listener
+	// 8. Document Ready & OnScroll
 	$(document).ready(function () {
 		$(document).on("scroll", onScroll);
-
-		// Mobile Submenu Fix (Funksiyanı burada çağırırıq)
-		mobileNav();
+		mobileNav(); // Mobil menyu funksiyasını çağırırıq
 	});
 
-	// 9. OnScroll Function
 	function onScroll(event) {
 		var scrollPos = $(document).scrollTop();
 		$('.nav a').each(function () {
 			var currLink = $(this);
-			// Linkin href-i sadəcə "#" deyilsə yoxla
 			if (currLink.attr("href").indexOf('#') !== -1) {
 				var refElement = $(currLink.attr("href"));
-				if (refElement.length && refElement.position().top <= scroll
+				if (refElement.length && refElement.position().top <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+					$('.nav ul li a').removeClass("active");
+					currLink.addClass("active");
+				}
+				else {
+					currLink.removeClass("active");
+				}
+			}
+		});
+	}
+
+	// 9. Page Loading Animation
+	$(window).on('load', function () {
+		$('#js-preloader').addClass('loaded');
+	});
+
+	// 10. Window Resize Mobile Menu Fix
+	function mobileNav() {
+		$('.submenu').on('click', function () {
+			var width = $(window).width();
+			if (width < 992) {
+				$('.submenu ul').removeClass('active');
+				$(this).find('ul').toggleClass('active');
+			}
+		});
+	}
+
+})(window.jQuery);

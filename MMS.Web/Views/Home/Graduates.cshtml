@@ -1,81 +1,72 @@
 ﻿@using MMS.Core.Entities
-@model List<AppUser>
+@model IEnumerable<AppUser>
 @{
     ViewData["Title"] = "Məzunlar";
 }
 
-<div class="container page-padding">
-
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <div class="section-heading text-center mb-5">
-                <h4>Bizim <em>Məzunlar</em></h4>
-                <img src="~/assets/images/heading-line-dec.png" alt="dekor">
-                <p>Universitetimizi bitirən və karyerasında uğur qazanan tələbələrimizlə tanış olun.</p>
+<div class="page-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading text-center mb-5">
+                    <h4>Bizim <em>Məzunlar</em></h4>
+                    <img src="~/assets/images/heading-line-dec.png" alt="">
+                    <p>Məzunlarımızla fəxr edirik</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        @if (Model != null && Model.Count > 0)
-        {
-            @foreach (var student in Model)
+        <div class="row">
+            @if (Model != null && Model.Any())
             {
-                <div class="col-lg-4 col-md-6 col-12 mb-4">
-                    <div class="graduate-item">
-
-                        <div class="graduate-img-wrapper">
-                            @if (!string.IsNullOrEmpty(student.ProfileImageUrl))
-                            {
-                                <img src="~/uploads/@student.ProfileImageUrl" alt="@student.FirstName">
-                            }
-                            else
-                            {
-                                <img src="https://via.placeholder.com/150/667eea/ffffff?text=@student.FirstName.Substring(0, 1)" alt="Default">
-                            }
-                        </div>
-
-                        <div class="graduate-info">
-                            <h5>@student.FirstName @student.LastName</h5>
-                            <span class="profession">
-                                @(string.IsNullOrEmpty(student.Profession) ? "Məzun" : student.Profession)
-                            </span>
-                        </div>
-
-                        <div class="graduate-details">
-                            <p>
-                                <span>Universitet:</span>
-                                <strong>@(student.University ?? "-")</strong>
-                            </p>
-                            <p>
-                                <span>İxtisas:</span>
-                                <strong>@(student.Degree ?? "-")</strong>
-                            </p>
-                            <p>
-                                <span>Məzun İli:</span>
-                                <strong>@(string.IsNullOrEmpty(student.GraduationYear) ? "-" : student.GraduationYear)</strong>
-                            </p>
-                        </div>
-
-                        @if (!string.IsNullOrEmpty(student.About))
-                        {
-                            <div class="graduate-quote">
-                                @student.About
+                @foreach (var user in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="graduate-item">
+                            <div class="graduate-img-wrapper">
+                                @if (!string.IsNullOrEmpty(user.ProfileImageUrl))
+                                {
+                                    <img src="~/uploads/@user.ProfileImageUrl" alt="@user.FirstName">
+                                }
+                                else
+                                {
+                                    <img src="https://ui-avatars.com/api/?name=@user.FirstName+@user.LastName&background=random" alt="Default Profile">
+                                }
                             </div>
-                        }
+                            <div class="graduate-info">
+                                <h5>@user.FirstName @user.LastName</h5>
+                                <span class="profession">@(user.Profession ?? "Məzun")</span>
+                            </div>
 
+                            <div class="graduate-details">
+                                <p>
+                                    <strong>Təhsil:</strong>
+                                    @if (!string.IsNullOrEmpty(user.University))
+                                    {
+                                        <span>@user.University</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Qeyd olunmayıb</span>
+                                    }
+                                </p>
+                                @if (!string.IsNullOrEmpty(user.Degree))
+                                {
+                                    <p><strong>İxtisas:</strong> @user.Degree</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <div class="alert alert-info">
+                        Hələlik sistemdə qeydiyyatdan keçmiş məzun yoxdur.
                     </div>
                 </div>
             }
-        }
-        else
-        {
-            <div class="col-12">
-                <div class="alert alert-light text-center shadow-sm" style="border-radius: 15px;">
-                    <i class="fas fa-info-circle text-primary me-2"></i>
-                    Hələlik sistemdə qeydiyyatdan keçmiş məzun yoxdur.
-                </div>
-            </div>
-        }
+        </div>
     </div>
 </div>
