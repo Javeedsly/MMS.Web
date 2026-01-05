@@ -667,7 +667,7 @@ footer {
     }
 
 /* =========================================
-   8. ANIMATIONS & RESPONSIVENESS
+   8. ANIMATIONS & RESPONSIVENESS (YENİLƏNMİŞ)
    ========================================= */
 
 @keyframes fadeInUp {
@@ -692,99 +692,192 @@ footer {
     }
 }
 
-/* Tablet və Kiçik Laptoplar (Max 992px) */
+/* --- Tablet və Kiçik Laptoplar (Max 992px) --- */
 @media (max-width: 992px) {
-    .main-nav .nav {
-        display: none;
+    /* Menyu Trigger (Hamburger icon) Görünən olsun */
+    .header-area .menu-trigger {
+        display: block !important;
+        cursor: pointer;
+        position: absolute;
+        top: 23px;
+        right: 20px;
+        width: 32px;
+        height: 40px;
+        text-indent: -9999em;
+        z-index: 99;
     }
-    /* Ana səhifə menyusunu gizlət */
 
+        .header-area .menu-trigger span,
+        .header-area .menu-trigger span:before,
+        .header-area .menu-trigger span:after {
+            background-color: #1e1e1e;
+            display: block;
+            height: 2px;
+            opacity: 1;
+            position: absolute;
+            transition: .25s ease-in-out;
+            width: 30px;
+        }
+
+        .header-area .menu-trigger span {
+            top: 16px;
+        }
+
+            .header-area .menu-trigger span:before {
+                content: "";
+                top: -10px;
+            }
+
+            .header-area .menu-trigger span:after {
+                content: "";
+                top: 10px;
+            }
+
+    /* Naviqasiya Menyusu (Açılan Menyu) */
+    .main-nav .nav {
+        background-color: #fff;
+        display: none; /* JS ilə slideToggle edilir, amma ilkin olaraq gizli */
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        z-index: 999;
+        gap: 0;
+    }
+
+    /* JS menyunu açanda 'display: flex' edərsə düzgün görünsün */
+    .header-area .nav.active {
+        display: flex;
+    }
+
+    .main-nav .nav li {
+        width: 100%;
+        border-bottom: 1px solid #eee;
+    }
+
+        .main-nav .nav li:last-child {
+            border-bottom: none;
+        }
+
+        .main-nav .nav li a {
+            display: block;
+            padding: 15px 20px;
+            color: #1e1e1e !important;
+            text-align: center;
+        }
+
+    /* Auth Səhifələri (Tablet) */
     .auth-card {
         flex-direction: column;
-        max-width: 600px;
-        max-height: 95vh;
-        width: 95%;
+        max-width: 700px;
+        max-height: none; /* Hündürlük məhdudiyyətini ləğv et */
+        height: auto;
+        margin: 20px 0;
     }
 
     .auth-sidebar {
-        flex: 0 0 auto;
         width: 100%;
-        padding: 20px;
-        min-height: auto;
+        padding: 30px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         text-align: left;
-        border-bottom: 1px solid rgba(255,255,255,0.2);
     }
 
-        .auth-sidebar p,
         .auth-sidebar .btn {
-            display: none;
+            display: none; /* Tablet rejimində bəzi düymələri gizlət */
         }
 
         .auth-sidebar h2 {
-            font-size: 18px;
-            margin: 0;
-            margin-left: 10px;
+            font-size: 20px;
+            margin: 0 0 0 15px;
         }
 
     .auth-logo {
-        width: 40px;
+        width: 50px;
         margin: 0;
-    }
-
-    .auth-main {
-        padding: 25px;
     }
 }
 
-/* Mobil Telefonlar (Max 576px) */
-@media (max-width: 576px) {
+/* --- Mobil Telefonlar (Max 767px) --- */
+@media (max-width: 767px) {
+    /* Ümumi Şriftləri Kiçilt */
+    .main-banner .left-content h2 {
+        font-size: 32px;
+        line-height: 40px;
+        text-align: center;
+    }
+
+    .main-banner .left-content p {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    .main-banner .gradient-button {
+        text-align: center;
+    }
+
+    /* Banner Şəkli Mobildə Gizlənsin (yer tutmaması üçün) */
+    .main-banner .right-image {
+        display: none;
+    }
+
+    .main-banner {
+        padding: 120px 0 50px 0;
+        background-size: cover;
+    }
+
+    .section-heading h4 {
+        font-size: 28px;
+    }
+
+    /* Login/Register Səhifəsi Mobildə */
     .auth-body-bg {
-        padding: 0;
+        height: auto; /* Fixed height-i ləğv et */
+        min-height: 100vh;
+        padding: 20px 10px;
+        display: block; /* Flex-i ləğv et ki, scroll işləsin */
+        overflow-y: auto;
     }
 
     .auth-card {
-        max-height: 100vh;
         width: 100%;
-        border-radius: 0;
-        border: none;
+        max-width: 100%;
+        margin-top: 0;
+        border-radius: 15px;
+        height: auto;
+        overflow: visible;
+        flex-direction: column;
     }
 
     .auth-sidebar {
-        padding: 15px;
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
     }
 
         .auth-sidebar h2 {
-            display: none;
+            margin: 10px 0;
+            font-size: 18px;
         }
 
-        .auth-sidebar .auth-logo {
-            width: 35px;
-        }
-
-        /* Ana səhifəyə qayıt düyməsini mobildə göstər */
         .auth-sidebar .btn {
-            display: inline-block !important;
-            padding: 5px 10px;
-            font-size: 12px;
+            display: inline-block !important; /* Ana səhifəyə qayıt düyməsini göstər */
+            margin-top: 10px;
         }
 
+    /* Login Form hissəsi */
     .auth-main {
-        padding: 20px 15px;
-    }
-
-    .auth-header h3 {
-        font-size: 20px;
-    }
-
-    .auth-header p {
-        font-size: 13px;
+        padding: 30px 20px;
+        height: auto;
+        overflow-y: visible; /* Daxili scroll-u ləğv et, body scroll işləsin */
     }
 
     .grid-2 {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Register formunda sütunları birləşdir */
         gap: 15px;
     }
 
@@ -792,18 +885,24 @@ footer {
         margin-bottom: 15px;
     }
 
-    .btn-modern, .btn-google {
-        font-size: 14px;
-        padding: 10px;
-    }
-
+    /* Cinsiyyət seçimi düymələri */
     .gender-selector {
+        flex-direction: row;
         gap: 10px;
     }
 
     .gender-label span {
-        padding: 10px;
-        font-size: 14px;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    /* Məzunlar səhifəsi */
+    .page-padding {
+        padding-top: 100px;
+    }
+
+    .graduate-item {
+        margin-bottom: 25px;
     }
 }
 /* =========================================
